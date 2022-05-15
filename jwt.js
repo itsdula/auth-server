@@ -8,12 +8,9 @@ const createJWT = (uid, username) => JWT.sign({ uid, username }, KEY);
 
 // take JWT and return {UID, username} || Error
 const verifyJWT = jwt => {
-	const response = JWT.verify(jwt, KEY, (err, uid) => {
-		if (err) {
-			return err;
-		} else {
-			return uid;
-		}
+	const response = JWT.verify(jwt, KEY, (err, user) => {
+		if (err) return err;
+		return user;
 	});
 
 	return response;
