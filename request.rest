@@ -1,4 +1,4 @@
-// Handle all empty requests
+// Empty requests
 DELETE http://localhost:3000/removeUser
 ###
 POST http://localhost:3000/createUser
@@ -22,7 +22,7 @@ DELETE http://localhost:3000/removeUser
 Content-Type: application/json
 
 {
-    "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI4N2Y1OGM4MC0yMDA3LTQ5YjctOTExMy1mZjY1MjhkMjNlMWYiLCJ1c2VybmFtZSI6ImR1bGEiLCJpYXQiOjE2NTMzNDY1NDh9.o2LkBc9GzGj3f2dKJBJN7hyBFTaxbaDr35sQ40dU5F0"
+    "jwt": "INSERT JWT from createUser || login response"
 }
 
 ###
@@ -41,7 +41,7 @@ GET http://localhost:3000/auth
 Content-Type: application/json
 
 {
-    "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI4N2Y1OGM4MC0yMDA3LTQ5YjctOTExMy1mZjY1MjhkMjNlMWYiLCJ1c2VybmFtZSI6ImR1bGEiLCJpYXQiOjE2NTMzNDY1NDh9.o2LkBc9GzGj3f2dKJBJN7hyBFTaxbaDr35sQ40dU5F0"
+    "jwt": "INSERT JWT from createUser || login response"
 }
 
 ###
