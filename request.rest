@@ -1,0 +1,47 @@
+// Handle all empty requests
+DELETE http://localhost:3000/removeUser
+###
+POST http://localhost:3000/createUser
+###
+POST http://localhost:3000/login
+###
+GET http://localhost:3000/auth
+###
+
+POST http://localhost:3000/createUser
+Content-Type: application/json
+
+{
+    "username": "dula",
+    "password": "12345678"
+}
+
+###
+
+DELETE http://localhost:3000/removeUser
+Content-Type: application/json
+
+{
+    "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI4N2Y1OGM4MC0yMDA3LTQ5YjctOTExMy1mZjY1MjhkMjNlMWYiLCJ1c2VybmFtZSI6ImR1bGEiLCJpYXQiOjE2NTMzNDY1NDh9.o2LkBc9GzGj3f2dKJBJN7hyBFTaxbaDr35sQ40dU5F0"
+}
+
+###
+
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+    "username": "dula",
+    "password": "12345678"
+}
+
+###
+
+GET http://localhost:3000/auth
+Content-Type: application/json
+
+{
+    "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI4N2Y1OGM4MC0yMDA3LTQ5YjctOTExMy1mZjY1MjhkMjNlMWYiLCJ1c2VybmFtZSI6ImR1bGEiLCJpYXQiOjE2NTMzNDY1NDh9.o2LkBc9GzGj3f2dKJBJN7hyBFTaxbaDr35sQ40dU5F0"
+}
+
+###

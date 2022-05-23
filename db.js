@@ -7,12 +7,14 @@ function getUserByUID(uid) {
 	// Get all users
 	const users = readUsersFile();
 
+	let user = null;
+
 	for (u in users) {
 		// Check if there is a UID match
-		if (users[u].uid === uid) return { uid: users[u].uid, username: users[u].username };
+		if (users[u].uid === uid) user = { uid, username: users[u].username };
 	}
 
-	return null;
+	return user;
 }
 
 function getUserByUsername(username) {
@@ -48,20 +50,26 @@ function addNewUser(username, password) {
 }
 
 function deleteUser(uid, username) {
-	// Return null if user does not exists
-	if (getUserByUID(uid) == getUserByUsername(username)) return null;
+	let deleted = false;
+
+	// Return { newUsers[], deleted: flase } if user does not exists
+	if (getUserByUID(uid) == getUserByUsername(username)) return deleted;
 
 	// Get all users
 	const users = readUsersFile();
 
 	// Filter based on UID and username
-	const newUsers = users.filter(user => user.uid !== uid && user.username !== username);
+	const newUsers = users.filter(function (user) {
+		// Confirm deleting
+		if (user.uid === uid && user.username === username) deleted = true;
+		return user.uid !== uid && user.username !== username;
+	});
 
 	// Store all new list of users
 	saveUsersFile(newUsers);
 
-	// for testing purposes
-	return newUsers;
+	// newUsers is made for testing purpose with JEST
+	return { newUsers, deleted };
 }
 
 const readUsersFile = () => JSON.parse(fs.readFileSync(FILE_PATH, { encoding: "utf-8" }));

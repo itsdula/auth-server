@@ -8,6 +8,8 @@ async function createUser(username, password) {
 	if (typeof username !== "string" || typeof password !== "string") return null;
 	const hashedPassword = await hashPassword(password);
 	const uid = addNewUser(username, hashedPassword);
+	// Return null if user is not created
+	if (!uid) return null;
 	const JWT = createJWT(uid, username);
 	return JWT;
 }
@@ -30,26 +32,31 @@ function login(username, password) {
 	return JWT;
 }
 function removeUser(jwt) {
-	try {
-		const { uid, username } = verifyJWT(jwt);
-		deleteUser(uid, username);
-		return username;
-	} catch (err) {
-		console.log(err);
-		return null;
-	}
+	const user = verifyJWT(jwt);
+
+	// Return null if not verified
+	if (!user) return null;
+	const { uid, username } = user;
+
+	// Delete user and confirm
+	const { deleted } = deleteUser(uid, username);
+	return deleted ? username : null;
 }
 
 function authorize(jwt) {
-	const { username, uid } = verifyJWT(jwt);
-	// Get the user by their UID && username and compare values
-	const { uid: uid1, username: username1 } = getUserByUID(uid);
-	const { uid: uid2, username: username2 } = getUserByUsername(username);
+	const user = verifyJWT(jwt);
 
-	if (uid1 !== uid2) return null;
-	if (username1 !== username2) return null;
+	// Return null if not verified
+	if (!user) return null;
+	const { uid, username } = user;
 
-	return { username, uid };
+	// Get the user by their UID and compare values
+	const userFromDB = getUserByUID(uid);
+
+	// Return null if no user
+	if (userFromDB?.uid !== uid) return null;
+
+	return { uid, username };
 }
 
 async function hashPassword(password) {
@@ -62,13 +69,8 @@ async function hashPassword(password) {
 	}
 }
 
-async function comparePasswords(password, hashedPassword) {
-	let match = false;
-	try {
-		match = await bcrypt.compare(password, hashedPassword);
-	} catch (err) {
-		console.error(error);
-	}
+function comparePasswords(password, hashedPassword) {
+	const match = bcrypt.compareSync(password, hashedPassword);
 	return match;
 }
 

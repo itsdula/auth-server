@@ -38,11 +38,11 @@ test("Getting a user from the the users.json", function () {
 
 test("Removing a user from users.json", function () {
 	// Removing a user that does not exist
-	expect(deleteUser("No UID", "No username")).toBeNull();
+	expect(deleteUser("No UID", "No username")).toBe(false);
 
 	// Remove the return statement in db.js line 58 for production as it's used for this test
 	const [dula, moe, aziz] = require("./users.json");
-	expect(deleteUser(dula.uid, dula.username)).toEqual([moe, aziz]);
-	expect(deleteUser(moe.uid, moe.username)).toEqual([aziz]);
-	expect(deleteUser(aziz.uid, aziz.username)).toEqual([]);
+	expect(deleteUser(dula.uid, dula.username)).toEqual({ deleted: true, newUsers: [moe, aziz] });
+	expect(deleteUser(moe.uid, moe.username)).toEqual({ deleted: true, newUsers: [aziz] });
+	expect(deleteUser(aziz.uid, aziz.username)).toEqual({ deleted: true, newUsers: [] });
 });

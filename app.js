@@ -32,7 +32,7 @@ app.post("/login", function (req, res) {
 
 // Authorize
 app.get("/auth", function (req, res) {
-	const jwt = req?.body;
+	const { jwt } = req?.body;
 
 	const user = authorize(jwt);
 
