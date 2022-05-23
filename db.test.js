@@ -1,21 +1,29 @@
-const { getUserByUID, getUserByUsername, addNewUser, removeUser } = require("./db");
+const { getUserByUID, getUserByUsername, addNewUser, deleteUser } = require("./db");
 
 test("Adding new users to users.json", function () {
 	// test adding an entry (manually make users.json an empty array [])
-	expect(addNewUser("dula", "1234567890")).toEqual({ uid: expect.any(String), username: "dula" });
-	expect(addNewUser("moe", "fstycvtyvh")).toEqual({ uid: expect.any(String), username: "moe" });
-	expect(addNewUser("aziz", "ckejwn3kk")).toEqual({ uid: expect.any(String), username: "aziz" });
+	expect(addNewUser("dula", "1234567890")).toContain("-");
+	expect(addNewUser("moe", "fstycvdtyvh")).toContain("-");
+	expect(addNewUser("aziz", "ckejfwn3kk")).toContain("-");
 	// test adding an existing user
 	expect(addNewUser("dula", "1234567890")).toBeNull();
-	expect(addNewUser("moe", "aaa")).toBeNull();
-	expect(addNewUser("aziz", "bbb")).toBeNull();
+	expect(addNewUser("moe", "aesf434feaa")).toBeNull();
+	expect(addNewUser("aziz", "bdsfewfebb")).toBeNull();
 });
 
 test("Getting a user from the the users.json", function () {
 	// Test getting specific user by username
-	expect(getUserByUsername("dula")).toEqual({ uid: expect.any(String), username: "dula" });
-	expect(getUserByUsername("moe")).toEqual({ uid: expect.any(String), username: "moe" });
-	expect(getUserByUsername("aziz")).toEqual({ uid: expect.any(String), username: "aziz" });
+	expect(getUserByUsername("dula")).toEqual({
+		uid: expect.any(String),
+		username: "dula",
+		password: expect.any(String),
+	});
+	expect(getUserByUsername("moe")).toEqual({ uid: expect.any(String), username: "moe", password: expect.any(String) });
+	expect(getUserByUsername("aziz")).toEqual({
+		uid: expect.any(String),
+		username: "aziz",
+		password: expect.any(String),
+	});
 
 	// Test getting specific user by UID
 	const [dula, moe, aziz] = require("./users.json");
@@ -30,11 +38,11 @@ test("Getting a user from the the users.json", function () {
 
 test("Removing a user from users.json", function () {
 	// Removing a user that does not exist
-	expect(removeUser("No UID", "No username")).toBeNull();
+	expect(deleteUser("No UID", "No username")).toBeNull();
 
 	// Remove the return statement in db.js line 58 for production as it's used for this test
 	const [dula, moe, aziz] = require("./users.json");
-	expect(removeUser(dula.uid, dula.username)).toEqual([moe, aziz]);
-	expect(removeUser(moe.uid, moe.username)).toEqual([aziz]);
-	expect(removeUser(aziz.uid, aziz.username)).toEqual([]);
+	expect(deleteUser(dula.uid, dula.username)).toEqual([moe, aziz]);
+	expect(deleteUser(moe.uid, moe.username)).toEqual([aziz]);
+	expect(deleteUser(aziz.uid, aziz.username)).toEqual([]);
 });

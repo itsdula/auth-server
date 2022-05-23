@@ -9,7 +9,7 @@ function getUserByUID(uid) {
 
 	for (u in users) {
 		// Check if there is a UID match
-		if (users[u].uid === uid) return { username: users[u].username, uid: users[u].uid };
+		if (users[u].uid === uid) return { uid: users[u].uid, username: users[u].username };
 	}
 
 	return null;
@@ -21,7 +21,10 @@ function getUserByUsername(username) {
 
 	for (u in users) {
 		// Check if there is a username match
-		if (users[u].username === username) return { username: users[u].username, uid: users[u].uid };
+		if (users[u].username === username) {
+			const { uid, password } = users[u];
+			return { uid, username, password };
+		}
 	}
 
 	return null;
@@ -41,13 +44,13 @@ function addNewUser(username, password) {
 	// Store the new array of users
 	saveUsersFile(users);
 
-	// for testing purposes.
-	return { uid, username };
+	return uid;
 }
 
-function removeUser(uid, username) {
+function deleteUser(uid, username) {
 	// Return null if user does not exists
 	if (getUserByUID(uid) == getUserByUsername(username)) return null;
+
 	// Get all users
 	const users = readUsersFile();
 
@@ -64,4 +67,4 @@ function removeUser(uid, username) {
 const readUsersFile = () => JSON.parse(fs.readFileSync(FILE_PATH, { encoding: "utf-8" }));
 const saveUsersFile = users => fs.writeFileSync(FILE_PATH, JSON.stringify(users));
 
-module.exports = { getUserByUID, getUserByUsername, addNewUser, removeUser };
+module.exports = { getUserByUID, getUserByUsername, addNewUser, deleteUser };
