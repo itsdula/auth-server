@@ -15,7 +15,7 @@ The following steps explain the simple steps to run this server:
 
 1. Clone the project into your machine
 2. Make sure the **users.json** is just an empty array ``[]``
-3. Open the **.env** file and replace **"INSERT_SECRET_KEY"** with your own secret key <ins>**(NO QUOTES)**</ins>
+3. Open the **.env** file and replace ``"INSERT_SECRET_KEY"`` with your own secret key <ins>**(NO QUOTES)**</ins>
 4. Open terminal ``cd`` into your directory and run ``node .``
 
 ### Testing
