@@ -6,8 +6,8 @@ Auth-Server is a small API server that allows its users to create, authenticate,
 It has four API end point:
 | API Endpoint | Expected Value | Retruned Value | Error Message |
 |----------------|---------------------------------------------|--------------------------------------------|----------------------------|
-| `/createUser`| `{ username: Stirng, password: String }` | `{jwt = String, username: String}` | `{ message: String }` |
-| `/login` | `{ username: Stirng, password: String }` | `{jwt = String, username: String}` | `{ message: String }` |
+| `/createUser`| `{ username: Stirng, password: String }` | `{ jwt = String, username: String }` | `{ message: String }` |
+| `/login` | `{ username: Stirng, password: String }` | `{ jwt = String, username: String }` | `{ message: String }` |
 | `/auth` | `{ jwt: String }` | `{ uid: String, username: String }` | `{ message: String }` |
 | `/removeUser`| `{ username: Stirng, password: String }` | `{ message: username + " is removed." }` | `{ message: String }` |
 
