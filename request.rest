@@ -1,14 +1,14 @@
 // Empty requests
-DELETE http://localhost:3000/removeUser
+DELETE http://localhost:23456/auth/removeUser
 ###
-POST http://localhost:3000/createUser
+POST http://localhost:23456/auth/createUser
 ###
-POST http://localhost:3000/login
+POST http://localhost:23456/auth/login
 ###
-GET http://localhost:3000/auth
+GET http://localhost:23456/auth/auth
 ###
 
-POST http://localhost:3000/createUser
+POST http://localhost:23456/auth/createUser
 Content-Type: application/json
 
 {
@@ -18,16 +18,16 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:3000/removeUser
+DELETE http://localhost:23456/auth/removeUser
 Content-Type: application/json
 
 {
-    "jwt": "INSERT JWT from createUser || login response"
+    "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJlMGM1YjQ4Ni1jZTIzLTQzYjktYjdjMi0zOWJkYWY3MDdjY2QiLCJ1c2VybmFtZSI6ImR1bGEiLCJpYXQiOjE2NTQ0MjkzOTB9.j9qo8dp0wyAx_0Rb1jPZoTLBQwZ1PmCXkDJj3KvD89k"
 }
 
 ###
 
-POST http://localhost:3000/login
+POST http://localhost:23456/auth/login
 Content-Type: application/json
 
 {
@@ -37,11 +37,11 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:3000/auth
+GET http://localhost:23456/auth/auth
 Content-Type: application/json
 
 {
-    "jwt": "INSERT JWT from createUser || login response"
+    "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIwMzhhY2FkNi0wYjk1LTQ3MDctOWI0Mi0yZDUzZDU2ZDRiZGUiLCJ1c2VybmFtZSI6ImR1bGEiLCJpYXQiOjE2NTQ0MjkyMjJ9.BXjNhDQ8XhALb7vsUtLL-orGArWfFKATbSfh3BgmBdk"
 }
 
 ###
