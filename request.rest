@@ -41,7 +41,7 @@ GET http://localhost:23456/auth/auth
 Content-Type: application/json
 
 {
-    "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiIwMzhhY2FkNi0wYjk1LTQ3MDctOWI0Mi0yZDUzZDU2ZDRiZGUiLCJ1c2VybmFtZSI6ImR1bGEiLCJpYXQiOjE2NTQ0MjkyMjJ9.BXjNhDQ8XhALb7vsUtLL-orGArWfFKATbSfh3BgmBdk"
+    "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI4NzE1YTFjMC0xNDZmLTQwNDktOWY4NS0yYjA1ZTIwZmFjZDkiLCJ1c2VybmFtZSI6ImR1bGEiLCJpYXQiOjE2NTQ0MzY4ODl9.IV1PtPImx9t3puPxTr0nqkiqv2YPs51AGJpmw9yJh-0"
 }
 
 ###

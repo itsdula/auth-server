@@ -30,13 +30,10 @@ router.post("/login", function (req, res) {
 
 // Authorize
 router.get("/auth", function (req, res) {
-	const data = req?.body;
-	console.log("HERE", data);
+	const { jwt } = req?.body;
 
-	// const user = authorize(jwt);
-	// console.log(user);
+	const user = authorize(jwt);
 
-	const user = null;
 	user ? res.status(200).json(user) : res.status(403).json({ message: forbidden });
 });
 
