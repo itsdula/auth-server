@@ -29,7 +29,7 @@ router.post("/login", function (req, res) {
 });
 
 // Authorize
-router.get("/auth", function (req, res) {
+router.post("/auth", function (req, res) {
 	const { jwt } = req?.body;
 
 	const user = authorize(jwt);
