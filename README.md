@@ -17,7 +17,7 @@ The following steps explain the simple steps to run this server:
 
 1. Clone the project into your machine
 2. Make sure the `users.json` is just an empty array `[]`
-3. Open the `.env` file and replace `"INSERT_SECRET_KEY"` with your own secret key <ins>**(NO QUOTES)**</ins>
+3. Open the `.env` file and replace `"INSERT_SECRET_KEY"` with your own secret key <ins>**(NO QUOTES)**</ins> as well as the port number
 4. Open terminal `cd` into your directory and run `node .`
 
 ### Testing
@@ -26,4 +26,4 @@ In order to pass the tests, make sure that the `users.json` is just an empty arr
 
 ### Notes to be aware of
 
-in the file `db.js` there is a function named `deleteUser(uid, username)` on `line 52`. This function is responsible for receiving the `uid` and the `username` of a user and check it across the local databse `users.json` then removes the user. However, after removing it, it returns an array of all users as well as a boolean to confirm if the user is deleted or not `return { newUsers, deleted };`. The `newUsers` array is returned for testing pusposes only. If this is being used to run the server, than it should only return the deleted variable in the object as follows `return { deleted };`
+In the file `db.js` there is a function named `deleteUser(uid, username)` on `line 52`. This function is responsible for receiving the `uid` and the `username` of a user and check it across the local databse `users.json` then removes the user. However, after removing it, it returns an array of all users as well as a boolean to confirm if the user is deleted or not `return { newUsers, deleted };`. The `newUsers` array is returned for testing pusposes only. If this is being used to run the server, than it should only return the deleted variable in the object as follows `return { deleted };`
