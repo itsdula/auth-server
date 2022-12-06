@@ -1,5 +1,3 @@
-# Auth-Server
-
 ### Overview
 
 Auth-Server is a small API server that allows its users to create, authenticate, login, and delete a user from a local JSON file (_local database -_ `users.json`).
